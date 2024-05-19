@@ -3,11 +3,11 @@ import tensorflow as tf
 
 @st.cache(allow_output_mutation=True)
 def load_model():
-  model=tf.keras.models.load_model('model.h5')
+  model=tf.keras.models.load_model('model2.h5')
   return model
 model=load_model()
 st.write("""
-# Weather Classfication Group 4 (TORREVILLAS)"""
+# Weather Classfication Group 4 (TORREVILLAS, ROCHA)"""
 )
 file=st.file_uploader("Upload a Weather Picture: Choose any picture of a weather from your device gallery",type=["jpg","png"])
 
