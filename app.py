@@ -22,7 +22,7 @@ st.write("""
 file = st.file_uploader("Upload a Weather Picture: Choose any picture of a weather from your device gallery", type=["jpg", "png"])
 
 def import_and_predict(image_data, model):
-    size = (150, 150)  # Correct the size to be a tuple
+    size = (128, 128)  # Correct the size to be a tuple
     image = ImageOps.fit(image_data, size, Image.Resampling.LANCZOS)
     img = np.asarray(image)
     
