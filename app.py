@@ -1,16 +1,16 @@
 import streamlit as st
 import tensorflow as tf
-from tensorflow.keras.losses import CategoricalCrossentropy
+from tensorflow.keras.models import Sequential, load_model
+from tensorflow.keras.layers import Dense, Dropout, Flatten
 from PIL import Image, ImageOps
 import numpy as np
 
-# Define a custom loss function for loading the model
-def custom_categorical_crossentropy(y_true, y_pred):
-    return CategoricalCrossentropy(from_logits=False)(y_true, y_pred)
-
 @st.cache(allow_output_mutation=True)
 def load_model():
-    model = tf.keras.models.load_model('model.h5', custom_objects={'categorical_crossentropy': custom_categorical_crossentropy})
+    model = tf.keras.models.load_model('model.h5', compile=False)
+    model.compile(optimizer='adam',
+                  loss=tf.keras.losses.CategoricalCrossentropy(from_logits=False),
+                  metrics=['accuracy'])
     return model
 
 model = load_model()
@@ -22,7 +22,7 @@ st.write("""
 file = st.file_uploader("Upload a Weather Picture: Choose any picture of a weather from your device gallery", type=["jpg", "png"])
 
 def import_and_predict(image_data, model):
-    size = (128, 128)  
+    size = (150, 150)  # Correct the size to be a tuple
     image = ImageOps.fit(image_data, size, Image.Resampling.LANCZOS)
     img = np.asarray(image)
     img_reshape = img[np.newaxis, ...]
