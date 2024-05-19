@@ -1,5 +1,5 @@
 streamlit
 tensorflow
-opencv-python-headless
-Pillow
 numpy
+pillow
+opencv-python-headless
