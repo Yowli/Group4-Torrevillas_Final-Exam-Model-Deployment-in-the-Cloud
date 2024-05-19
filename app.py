@@ -25,7 +25,12 @@ def import_and_predict(image_data, model):
     size = (150, 150)  # Correct the size to be a tuple
     image = ImageOps.fit(image_data, size, Image.Resampling.LANCZOS)
     img = np.asarray(image)
-    img_reshape = img[np.newaxis, ...]
+    
+    # Normalize the image data to [0, 1]
+    img = img / 255.0
+
+    # Reshape the image to match the model's input shape
+    img_reshape = np.expand_dims(img, axis=0)
     prediction = model.predict(img_reshape)
     return prediction
 
