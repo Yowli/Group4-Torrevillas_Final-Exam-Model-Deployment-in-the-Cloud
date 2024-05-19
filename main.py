@@ -15,7 +15,7 @@ import cv2
 from PIL import Image,ImageOps
 import numpy as np
 def import_and_predict(image_data,model):
-    size=(256)
+    size=(256, 256)
     image=ImageOps.fit(image_data,size,Image.ANTIALIAS)
     img=np.asarray(image)
     img_reshape=img[np.newaxis,...]
