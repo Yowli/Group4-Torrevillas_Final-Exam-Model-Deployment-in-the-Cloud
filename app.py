@@ -16,7 +16,7 @@ def load_model():
 model = load_model()
 
 st.write("""
-# Weather Classification Group 4 (TORREVILLAS, ROCHA)
+# Weather Classification
 """)
 
 file = st.file_uploader("Upload a Weather Picture: Choose any picture of a weather from your device gallery", type=["jpg", "png"])
